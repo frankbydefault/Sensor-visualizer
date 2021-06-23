@@ -1,21 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//Para installar Navigationsi es que no se guardo en el lock
+//1. npm install @react-navigation/native @react-navigation/stack
+//2. expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
-export default function App() {
+import React from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
+//Navigation
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import { Login } from "./Screens/Login";
+import { Register } from "./Screens/Register";
+import { Subscription } from "./Screens/Subscription";
+import { Summary } from "./Screens/Summary";
+
+function Home({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Iniciar Sesion"
+        onPress={() => navigation.navigate("Login")}
+      />
+      <Button
+        title="Registrarse"
+        onPress={() => navigation.navigate("Register")}
+      />
     </View>
   );
 }
+const Stack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Subscription" component={Subscription} />
+        <Stack.Screen name="Summary" component={Summary} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
