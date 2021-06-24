@@ -3,7 +3,7 @@
 //2. expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Settings } from "react-native";
 //Navigation
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
@@ -11,8 +11,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { Login } from "./Screens/Login";
 import { Register } from "./Screens/Register";
-import { Subscription } from "./Screens/Subscription";
-import { Summary } from "./Screens/Summary";
+import { SettingsPage } from "./Screens/Settings";
+
+const Stack = createStackNavigator();
 
 function Home({ navigation }) {
   return (
@@ -26,21 +27,27 @@ function Home({ navigation }) {
         title="Registrarse"
         onPress={() => navigation.navigate("Register")}
       />
+      <Button
+        title="Settings"
+        onPress={() => navigation.navigate("Settings")}
+      />
     </View>
   );
 }
-const Stack = createStackNavigator();
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Subscription" component={Subscription} />
-        <Stack.Screen name="Summary" component={Summary} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Settings" component={SettingsPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
+
+export default App;
