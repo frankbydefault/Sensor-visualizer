@@ -12,6 +12,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "./Screens/Login";
 import { Register } from "./Screens/Register";
 import { SettingsPage } from "./Screens/Settings";
+import { Subscription } from "./Screens/Subscription";
 
 const Stack = createStackNavigator();
 
@@ -24,17 +25,28 @@ function Home({ navigation }) {
         onPress={() => navigation.navigate("Login")}
       />
       <Button
-        title="Registrarse"
-        onPress={() => navigation.navigate("Register")}
-      />
-      <Button
         title="Settings"
         onPress={() => navigation.navigate("Settings")}
+      />
+
+      <Button
+        title="suscripcion"
+        onPress={() => navigation.navigate("Suscripcion")}
       />
     </View>
   );
 }
 
+function Registerpage({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Button
+        title="Registrarse"
+        onPress={() => navigation.navigate("Register")}
+      />
+    </View>
+  );
+}
 class App extends React.Component {
   render() {
     return (
@@ -44,6 +56,7 @@ class App extends React.Component {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Settings" component={SettingsPage} />
+          <Stack.Screen name="Suscripcion" component={Subscription} />
         </Stack.Navigator>
       </NavigationContainer>
     );
