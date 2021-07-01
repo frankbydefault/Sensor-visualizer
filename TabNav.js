@@ -26,6 +26,22 @@ function HomeTabs() {
           ),
         }}
       />
+
+      <Tab.Screen
+        name="Display"
+        component={Summary}
+        options={{
+          tabBarLabel: "Display",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="poll-box-outline"
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+
       <Tab.Screen
         name="Settings"
         component={SettingsPage}
