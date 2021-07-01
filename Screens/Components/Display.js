@@ -1,26 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import firebase from "firebase";
+import firebase from "../../assets/db-connect";
 
 export default function Display() {
   const [gas, setGas] = useState("");
   const [humedad, setHumedad] = useState("");
   const [luz, setLuz] = useState("");
   const [temperatura, setTemperatura] = useState("");
-  var firebaseConfig = {
-    apiKey: "AIzaSyBxsKxSrf-jj2LNutVU-J2qO8Yev6c36Rs",
-    authDomain: "tic-proy2.firebaseapp.com",
-    databaseURL: "https://tic-proy2-default-rtdb.firebaseio.com",
-    projectId: "tic-proy2",
-    storageBucket: "tic-proy2.appspot.com",
-    messagingSenderId: "1062029312125",
-    appId: "1:1062029312125:web:d0a53669370b6097e2b114",
-  };
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  } else {
-    firebase.app();
-  }
   /*firebase.database().ref('prueba/1').set({
         valor: 'prueba'
     })
