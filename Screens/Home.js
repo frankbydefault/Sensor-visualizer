@@ -3,10 +3,9 @@ import {
   SafeAreaView,
   View,
   Text,
-  Button,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -36,8 +35,10 @@ function Home({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-
-      <Text style={styles.Title}>Bienvenido!</Text>
+      <ImageBackground
+        source={require("../assets/img/Manager.png")}
+        style={styles.image}
+      ></ImageBackground>
     </SafeAreaView>
   );
 }
@@ -62,6 +63,11 @@ const styles = StyleSheet.create({
   barcontainer: {
     backgroundColor: "snow",
     height: 70,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
 });
 export { Home };
