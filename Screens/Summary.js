@@ -6,6 +6,7 @@ function Summary() {
     <SafeAreaView>
       <Text>Summary page</Text>
       <Display />
+      <Display />
     </SafeAreaView>
   );
 }

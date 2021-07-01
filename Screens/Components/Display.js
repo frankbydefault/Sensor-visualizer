@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import firebase from "firebase";
 
@@ -29,18 +29,50 @@ export default function Display() {
     }).catch((error) =>{
         console.log("Fallo");
     });*/
+    useEffect(()=> {
+      const dataRetrieve = () =>{
+        firebase
+      .database()
+      .ref("Valores")
+      .on("value", (data) => {
+        const datos = data.toJSON();
+        console.log(datos.DatoUser1);
+        console.log(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1]);
+        console.log(datos.DatoUser1.Cantidad.Num);
+        console.log(datos.DatoUser1.length);
+  
+        setGas(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Gas);
+        setHumedad(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Humedad);
+        setLuz(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Luz);
+        setTemperatura(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Temperatura);
+        //setGas(datos.Gas);
+        console.log("Actualiza");
+      });
+      };
+      dataRetrieve();
+    },[]);
 
-  firebase
+
+    const dataRetrieve = () =>{
+      firebase
     .database()
-    .ref("Datos")
-    .once("value", (data) => {
+    .ref("Valores")
+    .on("value", (data) => {
       const datos = data.toJSON();
-      setGas(datos.pruebadatos.Gas);
-      setHumedad(datos.pruebadatos.Humedad);
-      setLuz(datos.pruebadatos.Luz);
-      setTemperatura(datos.pruebadatos.Temperatura);
+      console.log(datos.DatoUser1);
+      console.log(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1]);
+      console.log(datos.DatoUser1.Cantidad.Num);
+      console.log(datos.DatoUser1.length);
+
+      setGas(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Gas);
+      setHumedad(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Humedad);
+      setLuz(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Luz);
+      setTemperatura(datos.DatoUser1[datos.DatoUser1.Cantidad.Num-1].Temperatura);
       //setGas(datos.Gas);
     });
+    };
+
+  
 
   return (
     <View style={styles.container}>
