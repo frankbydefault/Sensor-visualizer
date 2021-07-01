@@ -24,7 +24,8 @@ export { SettingsPage };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 12,
+    flex: 1,
+    marginTop: "15%",
     padding: 12,
     borderRadius: 8,
     color: "#666",
