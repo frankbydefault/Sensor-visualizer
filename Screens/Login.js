@@ -42,7 +42,7 @@ export default class Login extends Component {
         ) {
           navHome();
         } else {
-          Alert.alert("Usuario o contrasena incorrectas");
+          Alert.alert("Usuario o contraseña incorrectas");
         }
       } catch (err) {
         console.log(err);
@@ -52,7 +52,7 @@ export default class Login extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.Uppercontainer}>
-          <Text style={styles.Title}>inicio de sesion</Text>
+          <Text style={styles.Title}>Inicio de sesión</Text>
         </View>
 
         <View style={styles.Bottomcontainer}>
@@ -62,7 +62,7 @@ export default class Login extends Component {
             placeholder={"Email"}
             style={styles.input}
           />
-          <Text>Contrasena</Text>
+          <Text>Contraseña</Text>
           <TextInput
             onChangeText={(value) => this.setState({ password: value })}
             placeholder={"Password"}
@@ -71,7 +71,7 @@ export default class Login extends Component {
           />
           <View style={styles.logbutton}>
             <Button
-              title={"Iniciar Sesion"}
+              title={"Iniciar Sesión"}
               color="tomato"
               style={styles.logbutton}
               onPress={onSubmit}
