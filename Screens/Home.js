@@ -20,28 +20,31 @@ function Home({ navigation }) {
   };
 
   return (
-    <SafeAreaView>
-      <View style={styles.logout}>
-        <TouchableOpacity onPress={logoff}>
-          <Text
-            style={{
-              color: "tomato",
-              fontSize: 17,
-              fontWeight: "bold",
-            }}
-          >
-            Cerrar Sesion
-          </Text>
-        </TouchableOpacity>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.barcontainer}>
+        <View style={styles.logout}>
+          <TouchableOpacity onPress={logoff}>
+            <Text
+              style={{
+                color: "tomato",
+                fontSize: 17,
+                fontWeight: "bold",
+              }}
+            >
+              Cerrar Sesion
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <Text style={styles.Title}>Home</Text>
+
+      <Text style={styles.Title}>Bienvenido!</Text>
     </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ecf0f1",
+    backgroundColor: "gainsboro",
   },
   logout: {
     alignItems: "flex-end",
@@ -55,6 +58,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 100,
     color: "black",
+  },
+  barcontainer: {
+    backgroundColor: "snow",
+    height: 70,
   },
 });
 export { Home };

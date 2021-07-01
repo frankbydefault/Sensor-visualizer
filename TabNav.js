@@ -6,6 +6,7 @@ import { SettingsPage } from "./Screens/Settings";
 import { Subscription } from "./Screens/Subscription";
 import { Home } from "./Screens/Home";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Summary } from "./Screens/Summary";
 
 const Tab = createMaterialBottomTabNavigator();
 

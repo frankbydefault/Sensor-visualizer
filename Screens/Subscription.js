@@ -8,30 +8,32 @@ function Subscription() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Subscription page</Text>
-
-      <View style={styles.button}>
-        <Button
-          style={styles.button}
-          onPress={() => {
-            setSubscription(true);
-          }}
-          color="skyblue"
-          disabled={isSubscribed}
-          title={!isSubscribed ? "Suscribirse" : "Ya estas Suscrito!"}
-        />
+      <View style={styles.Uppercontainer}>
+        <Text style={styles.title}>Suscripcion</Text>
       </View>
-
-      <View style={styles.button}>
-        <Button
-          style={styles.button}
-          onPress={() => {
-            setSubscription(false);
-          }}
-          color="skyblue"
-          disabled={!isSubscribed}
-          title="Cancelar suscripcion"
-        />
+      <View Style={{ paddingTop: 100 }}>
+        <View style={styles.button}>
+          <Button
+            style={styles.button}
+            onPress={() => {
+              setSubscription(true);
+            }}
+            color="tomato"
+            disabled={isSubscribed}
+            title={!isSubscribed ? "Suscribirse" : "Ya estas Suscrito!"}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            style={styles.button}
+            onPress={() => {
+              setSubscription(false);
+            }}
+            color="tomato"
+            disabled={!isSubscribed}
+            title="Cancelar suscripcion"
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -42,17 +44,26 @@ export { Subscription };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: "center",
-    justifyContent: "center",
   },
 
   button: {
+    alignSelf: "center",
+    justifyContent: "center",
     padding: 20,
     width: 250,
   },
 
   title: {
     padding: 20,
-    fontSize: 20,
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 60,
+    color: "white",
+  },
+
+  Uppercontainer: {
+    flex: 0.5,
+    backgroundColor: "grey",
   },
 });
