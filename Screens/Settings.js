@@ -6,6 +6,7 @@ import Input from "../assets/Input";
 function SettingsPage() {
   return (
     <SafeAreaView style={styles.container}>
+
       <Text>Margenes de Temperatura</Text>
       <View style={styles.row}>
         <Text>Minima</Text>
@@ -15,6 +16,17 @@ function SettingsPage() {
       <View style={styles.row}>
         <Input />
         <Input />
+      </View>
+
+      <Text>Márgenes de Humedad</Text>
+      <View style={styles.row}>
+        <Text>Mínima</Text>
+        <Text>Máxima</Text>
+      </View>
+
+      <View style={styles.row}>
+        <Input/>
+        <Input/>
       </View>
     </SafeAreaView>
   );

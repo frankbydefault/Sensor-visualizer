@@ -7,6 +7,7 @@ import {
   View,
   StyleSheet,
   Text,
+  Platform,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -30,12 +31,14 @@ export default class Register extends Component {
         await AsyncStorage.setItem("username", this.state.username);
         await AsyncStorage.setItem("password", this.state.password);
 
-        if (this.state.username && this.state.password) {
+        if (this.state.username !== "" && this.state.password !== "") {
           nav();
         } else {
           Alert.alert("Rellene los campos");
         }
       } catch (err) {
+        if(Platform.OS === "web") alert("Rellene los campos");
+        else Alert.alert("Rellene los campos");
         console.log(err);
       }
     };
