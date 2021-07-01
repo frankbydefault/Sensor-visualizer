@@ -107,6 +107,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     borderRadius: 6,
+    width: "100%",
+    alignSelf: "center",
   },
   Title: {
     alignItems: "center",
