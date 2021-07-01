@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   Uppercontainer: {
     flex: 0.5,
     backgroundColor: "#707070",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   Bottomcontainer: {
     marginHorizontal: 38,

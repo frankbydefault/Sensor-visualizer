@@ -37,7 +37,7 @@ export default class Register extends Component {
           Alert.alert("Rellene los campos");
         }
       } catch (err) {
-        if(Platform.OS === "web") alert("Rellene los campos");
+        if (Platform.OS === "web") alert("Rellene los campos");
         else Alert.alert("Rellene los campos");
         console.log(err);
       }
@@ -56,7 +56,7 @@ export default class Register extends Component {
             placeholder={"Email"}
             style={styles.input}
           />
-          <Text>Email</Text>
+          <Text>Contraseña</Text>
           <TextInput
             onChangeText={(value) => this.setState({ password: value })}
             placeholder={"Password"}
@@ -65,7 +65,7 @@ export default class Register extends Component {
           />
           <View style={styles.logbutton}>
             <Button
-              title={"Registarse"}
+              title={"Registrarse"}
               color="tomato"
               style={styles.input}
               onPress={onSubmit}
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   Uppercontainer: {
     flex: 0.5,
     backgroundColor: "#707070",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   Bottomcontainer: {
     marginHorizontal: 38,
