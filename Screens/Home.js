@@ -10,11 +10,10 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function Home() {
+function Home({ navigation }) {
   const logoff = async () => {
     try {
-      await AsyncStorage.removeItem("username");
-      await AsyncStorage.removeItem("password");
+      navigation.navigate("Login");
     } catch (err) {
       console.log(err);
     }
