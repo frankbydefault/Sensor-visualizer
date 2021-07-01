@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -42,7 +43,9 @@ export default class Login extends Component {
         ) {
           navHome();
         } else {
-          Alert.alert("Usuario o contraseña incorrectas");
+
+          if(Platform.OS === "web") alert("Usuario o contraseña incorrectas");
+          else Alert.alert("Usuario o contraseña incorrectas");
         }
       } catch (err) {
         console.log(err);
