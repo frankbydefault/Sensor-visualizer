@@ -1,5 +1,14 @@
 import React, { useState, useEffect, Component } from "react";
-import { Alert, Button, TextInput, SafeAreaView, View, StyleSheet, Text } from "react-native";
+import {
+  Alert,
+  Button,
+  TextInput,
+  SafeAreaView,
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default class Login extends Component {
@@ -42,25 +51,44 @@ export default class Login extends Component {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Text>inicio de sesion</Text>
-        <TextInput
-          onChangeText={(value) => this.setState({ username: value })}
-          placeholder={"Email"}
-          style={styles.input}
-        />
-        <TextInput
-          onChangeText={(value) => this.setState({ password: value })}
-          placeholder={"Password"}
-          secureTextEntry={true}
-          style={styles.input}
-        />
+        <View style={styles.Uppercontainer}>
+          <Text style={styles.Title}>inicio de sesion</Text>
+        </View>
 
-        <Button title={"Login"} style={styles.input} onPress={onSubmit} />
-        <Button
-          title={"Registrarse"}
-          style={styles.input}
-          onPress={navRegister}
-        />
+        <View style={styles.Bottomcontainer}>
+          <Text>Email</Text>
+          <TextInput
+            onChangeText={(value) => this.setState({ username: value })}
+            placeholder={"Email"}
+            style={styles.input}
+          />
+          <Text>Contrasena</Text>
+          <TextInput
+            onChangeText={(value) => this.setState({ password: value })}
+            placeholder={"Password"}
+            secureTextEntry={true}
+            style={styles.input}
+          />
+          <View style={styles.logbutton}>
+            <Button
+              title={"Iniciar Sesion"}
+              color="tomato"
+              style={styles.logbutton}
+              onPress={onSubmit}
+            />
+          </View>
+          <TouchableOpacity onPress={navRegister}>
+            <Text
+              style={{
+                color: "#616161",
+                fontSize: 17,
+                textDecorationLine: "underline",
+              }}
+            >
+              Create una cuenta!
+            </Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     );
   }
@@ -69,17 +97,37 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#ecf0f1",
   },
   input: {
-    width: 200,
-    height: 44,
     padding: 10,
     borderWidth: 1,
     borderColor: "black",
+    flexDirection: "column",
     marginBottom: 10,
+    marginTop: 10,
+    borderRadius: 6,
+  },
+  Title: {
+    alignItems: "center",
+    fontWeight: "bold",
+    fontSize: 30,
+    textAlign: "center",
+    paddingTop: 100,
+    color: "white",
+  },
+  Uppercontainer: {
+    flex: 0.5,
+    backgroundColor: "#707070",
+  },
+  Bottomcontainer: {
+    marginHorizontal: 38,
+    paddingTop: 50,
+  },
+  logbutton: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    borderRadius: 10,
   },
 });
 

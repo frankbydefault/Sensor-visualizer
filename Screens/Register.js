@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Alert, Button, TextInput, SafeAreaView, View, StyleSheet, Text } from "react-native";
+import {
+  Alert,
+  Button,
+  TextInput,
+  SafeAreaView,
+  View,
+  StyleSheet,
+  Text,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default class Register extends Component {
@@ -34,20 +42,33 @@ export default class Register extends Component {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Registro de Ususrio</Text>
-        <TextInput
-          onChangeText={(value) => this.setState({ username: value })}
-          placeholder={"Email"}
-          style={styles.input}
-        />
-        <TextInput
-          onChangeText={(value) => this.setState({ password: value })}
-          placeholder={"Password"}
-          secureTextEntry={true}
-          style={styles.input}
-        />
+        <View style={styles.Uppercontainer}>
+          <Text style={styles.Title}>Registro de Usuario</Text>
+        </View>
 
-        <Button title={"Registarse"} style={styles.input} onPress={onSubmit} />
+        <View style={styles.Bottomcontainer}>
+          <Text>Email</Text>
+          <TextInput
+            onChangeText={(value) => this.setState({ username: value })}
+            placeholder={"Email"}
+            style={styles.input}
+          />
+          <Text>Email</Text>
+          <TextInput
+            onChangeText={(value) => this.setState({ password: value })}
+            placeholder={"Password"}
+            secureTextEntry={true}
+            style={styles.input}
+          />
+          <View style={styles.logbutton}>
+            <Button
+              title={"Registarse"}
+              color="tomato"
+              style={styles.input}
+              onPress={onSubmit}
+            />
+          </View>
+        </View>
       </SafeAreaView>
     );
   }
@@ -56,17 +77,37 @@ export default class Register extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#ecf0f1",
   },
   input: {
-    width: 200,
-    height: 44,
     padding: 10,
     borderWidth: 1,
     borderColor: "black",
+    flexDirection: "column",
     marginBottom: 10,
+    marginTop: 10,
+    borderRadius: 6,
+  },
+  Title: {
+    alignItems: "center",
+    fontWeight: "bold",
+    fontSize: 30,
+    textAlign: "center",
+    paddingTop: 100,
+    color: "white",
+  },
+  Uppercontainer: {
+    flex: 0.5,
+    backgroundColor: "#707070",
+  },
+  Bottomcontainer: {
+    marginHorizontal: 38,
+    paddingTop: 50,
+  },
+  logbutton: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    borderRadius: 10,
   },
 });
 
