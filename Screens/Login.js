@@ -113,12 +113,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     textAlign: "center",
-    paddingTop: 100,
+    position: "relative",
+    marginTop: 100,
     color: "white",
   },
   Uppercontainer: {
     flex: 0.5,
     backgroundColor: "#707070",
+    overflow: "hidden"
   },
   Bottomcontainer: {
     marginHorizontal: 38,
