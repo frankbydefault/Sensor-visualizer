@@ -1,55 +1,64 @@
-import React, { Component } from "react";
-import {
-  Alert,
-  Button,
-  TextInput,
-  View,
-  StyleSheet,
-  useState,
-} from "react-native";
-import firebase from "../assets/db-connect";
+import React, { useState, useEffect, Component } from "react";
+import { Alert, Button, TextInput, View, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-class Login extends React.Component {
+export default class Login extends Component {
+  State = {
+    username: "",
+    password: "",
+    token: "",
+  };
+
   constructor(props) {
     super(props);
-
-    this.state = {
-      username: "",
-      password: "",
-    };
   }
-  onLogin() {
-    const { username, password } = this.state;
-
-    Alert.alert("Credentials", `${username} + ${password}`);
-  }
-
-  state = { islogged: false };
 
   render() {
+    const navRegister = () => {
+      this.props.navigation.navigate("Register");
+    };
+    const navHome = () => {
+      this.props.navigation.navigate("Home");
+    };
+    const onSubmit = async () => {
+      try {
+        const value = await AsyncStorage.getItem("username");
+        const value2 = await AsyncStorage.getItem("password");
+        console.log(value);
+        console.log(value2);
+        if (
+          value !== null &&
+          value === this.state.username &&
+          value2 === this.state.password
+        ) {
+          navHome();
+        } else {
+          Alert.alert("Usuario o contrasena incorrectas");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     return (
       <View style={styles.container}>
         <TextInput
-          value={this.state.username}
-          onChangeText={(username) => this.setState({ username })}
-          placeholder={"Username"}
+          onChangeText={(value) => this.setState({ username: value })}
+          placeholder={"Email"}
           style={styles.input}
         />
         <TextInput
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
+          onChangeText={(value) => this.setState({ password: value })}
           placeholder={"Password"}
           secureTextEntry={true}
           style={styles.input}
         />
 
+        <Button title={"Login"} style={styles.input} onPress={onSubmit} />
         <Button
-          title={"Login"}
+          title={"Registrarse"}
           style={styles.input}
-          onPress={() => {
-            this.onLogin.bind(this);
-            this.setState({ islogged: true });
-          }}
+          onPress={navRegister}
         />
       </View>
     );

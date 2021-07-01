@@ -37,21 +37,11 @@ function Home({ navigation }) {
   );
 }
 
-function Registerpage({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button
-        title="Registrarse"
-        onPress={() => navigation.navigate("Register")}
-      />
-    </View>
-  );
-}
 class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
