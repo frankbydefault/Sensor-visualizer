@@ -21,10 +21,6 @@ function Home({ navigation }) {
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home Screen</Text>
       <Button
-        title="Iniciar Sesion"
-        onPress={() => navigation.navigate("Login")}
-      />
-      <Button
         title="Settings"
         onPress={() => navigation.navigate("Settings")}
       />
@@ -41,7 +37,12 @@ class App extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />

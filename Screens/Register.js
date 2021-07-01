@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Component } from "react";
-import { Alert, Button, TextInput, View, StyleSheet } from "react-native";
+import React, { Component } from "react";
+import { Alert, Button, TextInput, View, StyleSheet, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default class Register extends Component {
@@ -19,9 +19,10 @@ export default class Register extends Component {
 
     const onSubmit = async () => {
       try {
-        const value = await AsyncStorage.setItem("user", this.state.username);
-        const value2 = await AsyncStorage.setItem("pass", this.state.password);
-        if (value !== null && value2 !== null) {
+        await AsyncStorage.setItem("username", this.state.username);
+        await AsyncStorage.setItem("password", this.state.password);
+
+        if (this.state.username && this.state.password) {
           nav();
         } else {
           Alert.alert("Rellene los campos");
@@ -33,6 +34,7 @@ export default class Register extends Component {
 
     return (
       <View style={styles.container}>
+        <Text>Registro de Ususrio</Text>
         <TextInput
           onChangeText={(value) => this.setState({ username: value })}
           placeholder={"Email"}
