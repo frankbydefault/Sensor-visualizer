@@ -3,7 +3,7 @@
 //2. expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
 import React from "react";
-import { StyleSheet, Text, View, Button, Settings } from "react-native";
+import { StyleSheet, Text, SafeAreaView, View, Button, Settings } from "react-native";
 //Navigation
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
 
 function Home({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home Screen</Text>
       <Button
         title="Settings"
@@ -29,7 +29,7 @@ function Home({ navigation }) {
         title="suscripcion"
         onPress={() => navigation.navigate("Suscripcion")}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

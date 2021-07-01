@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Button, TextInput, View, StyleSheet, Text } from "react-native";
+import { Alert, Button, TextInput, SafeAreaView, View, StyleSheet, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default class Register extends Component {
@@ -33,7 +33,7 @@ export default class Register extends Component {
     };
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text>Registro de Ususrio</Text>
         <TextInput
           onChangeText={(value) => this.setState({ username: value })}
@@ -48,7 +48,7 @@ export default class Register extends Component {
         />
 
         <Button title={"Registarse"} style={styles.input} onPress={onSubmit} />
-      </View>
+      </SafeAreaView>
     );
   }
 }

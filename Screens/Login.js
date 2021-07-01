@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import { Alert, Button, TextInput, View, StyleSheet, Text } from "react-native";
+import { Alert, Button, TextInput, SafeAreaView, View, StyleSheet, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default class Login extends Component {
@@ -41,7 +41,7 @@ export default class Login extends Component {
     };
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text>inicio de sesion</Text>
         <TextInput
           onChangeText={(value) => this.setState({ username: value })}
@@ -61,7 +61,7 @@ export default class Login extends Component {
           style={styles.input}
           onPress={navRegister}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

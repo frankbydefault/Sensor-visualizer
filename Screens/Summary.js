@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { SafeAreaView, View, Text } from "react-native";
 
 function Summary() {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Summary page</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
