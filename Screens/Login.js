@@ -43,8 +43,7 @@ export default class Login extends Component {
         ) {
           navHome();
         } else {
-
-          if(Platform.OS === "web") alert("Usuario o contraseña incorrectas");
+          if (Platform.OS === "web") alert("Usuario o contraseña incorrectas");
           else Alert.alert("Usuario o contraseña incorrectas");
         }
       } catch (err) {
@@ -75,7 +74,7 @@ export default class Login extends Component {
           <View style={styles.logbutton}>
             <Button
               title={"Iniciar Sesión"}
-              color="tomato"
+              color="dodgerblue"
               style={styles.logbutton}
               onPress={onSubmit}
             />
@@ -83,7 +82,7 @@ export default class Login extends Component {
           <TouchableOpacity onPress={navRegister}>
             <Text
               style={{
-                color: "#616161",
+                color: "dodgerblue",
                 fontSize: 17,
                 textDecorationLine: "underline",
               }}
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
   },
   Uppercontainer: {
     flex: 0.5,
-    backgroundColor: "#707070",
+    backgroundColor: "dodgerblue",
     overflow: "hidden",
   },
   Bottomcontainer: {

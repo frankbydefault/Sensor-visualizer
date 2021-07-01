@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function Subscription() {
   const [isSubscribed, setSubscription] = useState(false);
@@ -18,7 +19,7 @@ function Subscription() {
             onPress={() => {
               setSubscription(true);
             }}
-            color="tomato"
+            color="dodgerblue"
             disabled={isSubscribed}
             title={!isSubscribed ? "Suscribirse" : "Ya estas Suscrito!"}
           />
@@ -64,6 +65,6 @@ const styles = StyleSheet.create({
 
   Uppercontainer: {
     flex: 0.5,
-    backgroundColor: "grey",
+    backgroundColor: "dodgerblue",
   },
 });

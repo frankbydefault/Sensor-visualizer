@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   barcontainer: {
-    backgroundColor: "snow",
+    backgroundColor: "aliceblue",
     height: 70,
   },
   image: {

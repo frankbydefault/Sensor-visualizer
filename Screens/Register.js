@@ -66,7 +66,7 @@ export default class Register extends Component {
           <View style={styles.logbutton}>
             <Button
               title={"Registrarse"}
-              color="tomato"
+              color="dodgerblue"
               style={styles.input}
               onPress={onSubmit}
             />
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   Uppercontainer: {
     flex: 0.5,
-    backgroundColor: "#707070",
+    backgroundColor: "dodgerblue",
     overflow: "hidden",
   },
   Bottomcontainer: {
