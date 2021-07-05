@@ -11,6 +11,8 @@ import {
   Platform,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Input } from "react-native-elements";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Login extends Component {
   State = {
@@ -58,18 +60,28 @@ export default class Login extends Component {
         </View>
 
         <View style={styles.Bottomcontainer}>
-          <Text style={{ fontSize: 18 }}>Email</Text>
-          <TextInput
+          <Input
+            placeholder='Email'
+            leftIcon={
+            <Icon
+              name='email'
+              size={24}
+              color='black'
+            />}
+            style={styles.input}
             onChangeText={(value) => this.setState({ username: value })}
-            placeholder={"Email"}
-            style={styles.input}
           />
-          <Text style={{ fontSize: 18 }}>Contraseña</Text>
-          <TextInput
-            onChangeText={(value) => this.setState({ password: value })}
-            placeholder={"Password"}
-            secureTextEntry={true}
+          <Input
+            placeholder='Contraseña'
+            leftIcon={
+            <Icon
+              name='shield-key'
+              size={24}
+              color='black'
+            />}
             style={styles.input}
+            onChangeText={(value) => this.setState({ password: value })}
+            secureTextEntry={true}
           />
           <View style={styles.logbutton}>
             <Button
