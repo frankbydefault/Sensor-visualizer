@@ -61,20 +61,20 @@ export default function Display() {
           setLuz(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Luz);
           setTemperatura(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Temperatura);
 
-          setGas2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Gas);
-          setHumedad2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Humedad);
-          setLuz2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Luz);
-          setTemperatura2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Temperatura);
+          setGas2(datos.DatoUser1[Math.floor(Math.random() * datos.DatoUser1.Cantidad.Num)].Gas);
+          setHumedad2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Humedad);
+          setLuz2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Luz);
+          setTemperatura2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Temperatura);
 
-          setGas3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Gas);
-          setHumedad3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Humedad);
-          setLuz3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Luz);
-          setTemperatura3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Temperatura);
+          setGas3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Gas);
+          setHumedad3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Humedad);
+          setLuz3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Luz);
+          setTemperatura3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Temperatura);
 
-          setGas4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Gas);
-          setHumedad4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Humedad);
-          setLuz4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Luz);
-          setTemperatura4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num-2)) +1].Temperatura);
+          setGas4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Gas);
+          setHumedad4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Humedad);
+          setLuz4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Luz);
+          setTemperatura4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Temperatura);
         });
     };
     dataRetrieve();
