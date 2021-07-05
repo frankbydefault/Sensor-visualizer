@@ -1,34 +1,71 @@
 import React from "react";
-import { SafeAreaView, View, Text, Button, TextInput, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Button,
+  TextInput,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import firebase from "../assets/db-connect";
 import Input from "../assets/Input";
 
 function SettingsPage() {
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
+      <View style={styles.objContainer} elevation={5}>
+        <Text style={styles.text}>Margenes de Temperatura</Text>
+        <View style={styles.row}>
+          <Text>Minima</Text>
+          <Text> Maxima</Text>
+        </View>
 
-      <Text>Margenes de Temperatura</Text>
-      <View style={styles.row}>
-        <Text>Minima</Text>
-        <Text> Maxima</Text>
+        <View style={styles.row}>
+          <Input />
+          <Input />
+        </View>
       </View>
 
-      <View style={styles.row}>
-        <Input />
-        <Input />
+      <View style={styles.objContainer} elevation={5}>
+        <Text style={styles.text}>Márgenes de Humedad</Text>
+        <View style={styles.row}>
+          <Text>Mínima</Text>
+          <Text>Máxima</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Input />
+          <Input />
+        </View>
       </View>
 
-      <Text>Márgenes de Humedad</Text>
-      <View style={styles.row}>
-        <Text>Mínima</Text>
-        <Text>Máxima</Text>
+      <View style={styles.objContainer} elevation={5}>
+        <Text style={styles.text}>Márgenes de Luminocidad</Text>
+        <View style={styles.row}>
+          <Text>Mínima</Text>
+          <Text>Máxima</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Input />
+          <Input />
+        </View>
       </View>
 
-      <View style={styles.row}>
-        <Input/>
-        <Input/>
+      <View style={styles.objContainer} elevation={5}>
+        <Text style={styles.text}>Márgenes de Gas</Text>
+        <View style={styles.row}>
+          <Text>Mínima</Text>
+          <Text>Máxima</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Input />
+          <Input />
+        </View>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
@@ -41,13 +78,30 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     color: "#666",
-    backgroundColor: "#eaeaea",
+    backgroundColor: "lightsteelblue",
+  },
+
+  text: {
+    marginTop: 5,
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 7,
   },
 
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
-    margin: 10,
+    margin: 2,
     justifyContent: "space-evenly",
+    textAlignVertical: "center",
+  },
+
+  objContainer: {
+    borderColor: "black",
+    borderWidth: 0,
+    borderRadius: 13,
+    backgroundColor: "white",
+    marginBottom: 20,
+    padding: 15,
   },
 });

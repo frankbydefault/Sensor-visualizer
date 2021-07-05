@@ -25,7 +25,7 @@ function Home({ navigation }) {
           <TouchableOpacity onPress={logoff}>
             <Text
               style={{
-                color: "tomato",
+                color: "dodgerblue",
                 fontSize: 17,
                 fontWeight: "bold",
               }}

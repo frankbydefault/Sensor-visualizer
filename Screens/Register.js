@@ -50,13 +50,13 @@ export default class Register extends Component {
         </View>
 
         <View style={styles.Bottomcontainer}>
-          <Text>Email</Text>
+          <Text style={{ fontSize: 18 }}>Email</Text>
           <TextInput
             onChangeText={(value) => this.setState({ username: value })}
             placeholder={"Email"}
             style={styles.input}
           />
-          <Text>Contraseña</Text>
+          <Text style={{ fontSize: 18 }}>Contraseña</Text>
           <TextInput
             onChangeText={(value) => this.setState({ password: value })}
             placeholder={"Password"}
