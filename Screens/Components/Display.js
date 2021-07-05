@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import firebase from "firebase/app";
 import { Card, ListItem, Button, Icon, Image } from 'react-native-elements'
 
@@ -73,12 +73,12 @@ export default function Display() {
         //setGas(datos.Gas);
       });
   };
-
   return (
-    <View style={styles.container}>
-      <Card>
-        <Card.Title>Módulo 1</Card.Title>
-        <Card.Divider/>
+    <SafeAreaView>
+    <Card>
+      <Card.Title>Módulo 1</Card.Title>
+      <Card.Divider/>
+    <View>
           <Text style={{marginBottom: 10}}>
             Gas: {gas}
           </Text>
@@ -91,8 +91,9 @@ export default function Display() {
           <Text style={{marginBottom: 10}}>
             Luz: {luz}
           </Text>
-      </Card>
     </View>
+    </Card>
+    </SafeAreaView>
   );
 }
 
@@ -100,6 +101,8 @@ export { Display };
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
+    width: "100%",
     flex: 1,
     backgroundColor: "lightsteelblue",
     alignItems: "center",
