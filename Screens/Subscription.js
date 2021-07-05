@@ -10,7 +10,7 @@ function Subscription() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.Uppercontainer}>
-        <Text style={styles.title}>Suscripcion</Text>
+        <Text style={styles.title}>Suscripción</Text>
       </View>
       <View Style={{ paddingTop: 100 }}>
         <View style={styles.button}>
@@ -21,7 +21,7 @@ function Subscription() {
             }}
             color="dodgerblue"
             disabled={isSubscribed}
-            title={!isSubscribed ? "Suscribirse" : "Ya estas Suscrito!"}
+            title={!isSubscribed ? "Suscribirse" : "Ya estás Suscrito!"}
           />
         </View>
         <View style={styles.button}>
@@ -32,7 +32,7 @@ function Subscription() {
             }}
             color="tomato"
             disabled={!isSubscribed}
-            title="Cancelar suscripcion"
+            title={isSubscribed ? "Cancelar suscripción" : "No estás suscrito"}
           />
         </View>
       </View>

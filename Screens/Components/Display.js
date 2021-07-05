@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import firebase from "../../assets/db-connect";
+import firebase from "firebase/app";
 import { Card, ListItem, Button, Icon, Image } from 'react-native-elements'
 
 export default function Display() {
@@ -17,7 +17,12 @@ export default function Display() {
     storageBucket: "tic-proy2.appspot.com",
     messagingSenderId: "1062029312125",
     appId: "1:1062029312125:web:d0a53669370b6097e2b114",
-  };base.app();
+  };
+  if(!firebase.apps.length){
+    firebase.initializeApp(firebaseConfig);
+  }else{
+    firebase.app();
+  }
   /*firebase.database().ref('prueba/1').set({
         valor: 'prueba'
     })
