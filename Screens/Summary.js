@@ -4,8 +4,6 @@ import { Display } from "./Components/Display";
 function Summary() {
   return (
     <SafeAreaView>
-      <Text>Summary page</Text>
-      <Display />
       <Display />
     </SafeAreaView>
   );
