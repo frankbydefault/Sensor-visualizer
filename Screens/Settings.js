@@ -15,7 +15,7 @@ function SettingsPage() {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.objContainer} elevation={5}>
-        <Text style={styles.text}>Margenes de Temperatura</Text>
+        <Text style={styles.text}>Márgenes de Temperatura</Text>
         <View style={styles.row}>
           <Text>Minima</Text>
           <Text> Maxima</Text>
@@ -41,7 +41,7 @@ function SettingsPage() {
       </View>
 
       <View style={styles.objContainer} elevation={5}>
-        <Text style={styles.text}>Márgenes de Luminocidad</Text>
+        <Text style={styles.text}>Márgenes de Luminosidad</Text>
         <View style={styles.row}>
           <Text>Mínima</Text>
           <Text>Máxima</Text>
