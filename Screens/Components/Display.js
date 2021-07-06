@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { StyleSheet, View, SafeAreaView } from "react-native";
 import firebase from "firebase/app";
-import { Card,Text , ListItem, Button, Image } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon2 from 'react-native-vector-icons/Ionicons';
+import { Card, Text, ListItem, Button, Image } from "react-native-elements";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon2 from "react-native-vector-icons/Ionicons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { sub } from "react-native-reanimated";
 export default function Display() {
   const [gas, setGas] = useState("");
   const [humedad, setHumedad] = useState("");
@@ -37,9 +39,9 @@ export default function Display() {
     messagingSenderId: "1062029312125",
     appId: "1:1062029312125:web:d0a53669370b6097e2b114",
   };
-  if(!firebase.apps.length){
+  if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-  }else{
+  } else {
     firebase.app();
   }
   /*firebase.database().ref('prueba/1').set({
@@ -52,185 +54,305 @@ export default function Display() {
     });*/
   useEffect(() => {
     const dataRetrieve = () => {
-      firebase.database().ref("Valores").on("value", (data) => {
+      firebase
+        .database()
+        .ref("Valores")
+        .on("value", (data) => {
           const datos = data.toJSON();
-
 
           setGas(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Gas);
           setHumedad(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Humedad);
           setLuz(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Luz);
-          setTemperatura(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Temperatura);
+          setTemperatura(
+            datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Temperatura
+          );
 
-          setGas2(datos.DatoUser1[Math.floor(Math.random() * datos.DatoUser1.Cantidad.Num)].Gas);
-          setHumedad2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Humedad);
-          setLuz2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Luz);
-          setTemperatura2(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Temperatura);
+          setGas2(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)].Gas
+          );
+          setHumedad2(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)]
+              .Humedad
+          );
+          setLuz2(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)].Luz
+          );
 
-          setGas3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Gas);
-          setHumedad3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Humedad);
-          setLuz3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Luz);
-          setTemperatura3(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Temperatura);
+          setTemperatura2(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)]
+              .Temperatura
+          );
 
-          setGas4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Gas);
-          setHumedad4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Humedad);
-          setLuz4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Luz);
-          setTemperatura4(datos.DatoUser1[Math.floor((Math.random() * datos.DatoUser1.Cantidad.Num))].Temperatura);
+          setGas3(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)].Gas
+          );
+          setHumedad3(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)]
+              .Humedad
+          );
+          setLuz3(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)].Luz
+          );
+          setTemperatura3(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)]
+              .Temperatura
+          );
+
+          setGas4(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)].Gas
+          );
+          setHumedad4(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)]
+              .Humedad
+          );
+          setLuz4(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)].Luz
+          );
+          setTemperatura4(
+            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)]
+              .Temperatura
+          );
         });
     };
     dataRetrieve();
   }, []);
 
+  const getSubState = async () => {
+    const snapshot = await database.ref("user").once("user");
+
+    subData = snapshot.val();
+
+    return subData;
+  };
 
   return (
     <SafeAreaView>
-    <Card style={styles.container}>
-      <Card.Title style={styles.moduloTitle}>Módulo 1</Card.Title>
-      <Card.Divider/>
-      <View style = {styles.container}>
-          <Text style={styles.texto}>
-            Gas: {gas}                      <Icon style = {styles.iconos}
-              name='air-filter'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Humedad: {humedad}              <Icon2 style = {styles.iconos}
-              name='md-water-sharp'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Temperatura: {temperatura}       <Icon style = {styles.iconos}
-              name='coolant-temperature'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Luz: {luz}                      <Icon style = {styles.iconos}
-              name='ceiling-light'
-              size={24}
-              color='black'
-            />
-          </Text>
-      </View>
-    </Card>
-    {(modulos >=1) && (
       <Card style={styles.container}>
-      <Card.Title style={styles.moduloTitle}>Módulo 2</Card.Title>
-      <Card.Divider/>
-      <View style = {styles.container}>
+        <Card.Title style={styles.moduloTitle}>Módulo 1</Card.Title>
+        <Card.Divider />
+        <View style={styles.container}>
           <Text style={styles.texto}>
-            Gas: {gas2}                      <Icon style = {styles.iconos}
-              name='air-filter'
+            Gas: {gas}{" "}
+            <Icon
+              style={styles.iconos}
+              name="air-filter"
               size={24}
-              color='black'
+              color="black"
             />
           </Text>
           <Text style={styles.texto}>
-            Humedad: {humedad2}              <Icon2 style = {styles.iconos}
-              name='md-water-sharp'
+            Humedad: {humedad}{" "}
+            <Icon2
+              style={styles.iconos}
+              name="md-water-sharp"
               size={24}
-              color='black'
+              color="black"
             />
           </Text>
           <Text style={styles.texto}>
-            Temperatura: {temperatura2}       <Icon style = {styles.iconos}
-              name='coolant-temperature'
+            Temperatura: {temperatura}{" "}
+            <Icon
+              style={styles.iconos}
+              name="coolant-temperature"
               size={24}
-              color='black'
+              color="black"
             />
           </Text>
           <Text style={styles.texto}>
-            Luz: {luz2}                      <Icon style = {styles.iconos}
-              name='ceiling-light'
+            Luz: {luz}{" "}
+            <Icon
+              style={styles.iconos}
+              name="ceiling-light"
               size={24}
-              color='black'
+              color="black"
             />
           </Text>
-      </View>
-    </Card>
-    )}
-    {(modulos >=2) && (
-      <Card style={styles.container}>
-      <Card.Title style={styles.moduloTitle}>Módulo 3</Card.Title>
-      <Card.Divider/>
-      <View style = {styles.container}>
-          <Text style={styles.texto}>
-            Gas: {gas3}                      <Icon style = {styles.iconos}
-              name='air-filter'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Humedad: {humedad3}              <Icon2 style = {styles.iconos}
-              name='md-water-sharp'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Temperatura: {temperatura3}       <Icon style = {styles.iconos}
-              name='coolant-temperature'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Luz: {luz3}                      <Icon style = {styles.iconos}
-              name='ceiling-light'
-              size={24}
-              color='black'
-            />
-          </Text>
-      </View>
-    </Card>
-    )}
-    {(modulos >=3) && (
-      <Card style={styles.container}>
-      <Card.Title style={styles.moduloTitle}>Módulo 4</Card.Title>
-      <Card.Divider/>
-      <View style = {styles.container}>
-          <Text style={styles.texto}>
-            Gas: {gas4}                      <Icon style = {styles.iconos}
-              name='air-filter'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Humedad: {humedad4}              <Icon2 style = {styles.iconos}
-              name='md-water-sharp'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Temperatura: {temperatura4}       <Icon style = {styles.iconos}
-              name='coolant-temperature'
-              size={24}
-              color='black'
-            />
-          </Text>
-          <Text style={styles.texto}>
-            Luz: {luz4}                      <Icon style = {styles.iconos}
-              name='ceiling-light'
-              size={24}
-              color='black'
-            />
-          </Text>
-      </View>
-    </Card>
-    )}
+        </View>
+      </Card>
+      {modulos >= 1 && (
+        <Card style={styles.container}>
+          <Card.Title style={styles.moduloTitle}>Módulo 2</Card.Title>
+          <Card.Divider />
+          <View style={styles.container}>
+            <Text style={styles.texto}>
+              Gas: {gas2}{" "}
+              <Icon
+                style={styles.iconos}
+                name="air-filter"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Humedad: {humedad2}{" "}
+              <Icon2
+                style={styles.iconos}
+                name="md-water-sharp"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Temperatura: {temperatura2}{" "}
+              <Icon
+                style={styles.iconos}
+                name="coolant-temperature"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Luz: {luz2}{" "}
+              <Icon
+                style={styles.iconos}
+                name="ceiling-light"
+                size={24}
+                color="black"
+              />
+            </Text>
+          </View>
+        </Card>
+      )}
+      {modulos >= 2 && (
+        <Card style={styles.container}>
+          <Card.Title style={styles.moduloTitle}>Módulo 3</Card.Title>
+          <Card.Divider />
+          <View style={styles.container}>
+            <Text style={styles.texto}>
+              Gas: {gas3}{" "}
+              <Icon
+                style={styles.iconos}
+                name="air-filter"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Humedad: {humedad3}{" "}
+              <Icon2
+                style={styles.iconos}
+                name="md-water-sharp"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Temperatura: {temperatura3}{" "}
+              <Icon
+                style={styles.iconos}
+                name="coolant-temperature"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Luz: {luz3}{" "}
+              <Icon
+                style={styles.iconos}
+                name="ceiling-light"
+                size={24}
+                color="black"
+              />
+            </Text>
+          </View>
+        </Card>
+      )}
+      {modulos >= 3 && (
+        <Card style={styles.container}>
+          <Card.Title style={styles.moduloTitle}>Módulo 4</Card.Title>
+          <Card.Divider />
+          <View style={styles.container}>
+            <Text style={styles.texto}>
+              Gas: {gas4}{" "}
+              <Icon
+                style={styles.iconos}
+                name="air-filter"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Humedad: {humedad4}{" "}
+              <Icon2
+                style={styles.iconos}
+                name="md-water-sharp"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Temperatura: {temperatura4}{" "}
+              <Icon
+                style={styles.iconos}
+                name="coolant-temperature"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Luz: {luz4}{" "}
+              <Icon
+                style={styles.iconos}
+                name="ceiling-light"
+                size={24}
+                color="black"
+              />
+            </Text>
+          </View>
+        </Card>
+      )}
 
-    {(modulos <=2) && (
-      <Button title="Agregar Módulo" onPress= {() => setModulos(modulos+1)}/>
-    )}
-    
+      {modulos >= 4 && (
+        <Card style={styles.container}>
+          <Card.Title style={styles.moduloTitle}>Módulo 5</Card.Title>
+          <Card.Divider />
+          <View style={styles.container}>
+            <Text style={styles.texto}>
+              Gas: {gas3}{" "}
+              <Icon
+                style={styles.iconos}
+                name="air-filter"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Humedad: {humedad3}{" "}
+              <Icon2
+                style={styles.iconos}
+                name="md-water-sharp"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Temperatura: {temperatura3}{" "}
+              <Icon
+                style={styles.iconos}
+                name="coolant-temperature"
+                size={24}
+                color="black"
+              />
+            </Text>
+            <Text style={styles.texto}>
+              Luz: {luz3}{" "}
+              <Icon
+                style={styles.iconos}
+                name="ceiling-light"
+                size={24}
+                color="black"
+              />
+            </Text>
+          </View>
+        </Card>
+      )}
 
+      {modulos <= 3 && getSubState && (
+        <Button
+          title="Agregar Módulo"
+          onPress={() => setModulos(modulos + 1)}
+        />
+      )}
     </SafeAreaView>
   );
 }
@@ -238,11 +360,11 @@ export default function Display() {
 export { Display };
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
+  container: {
+    flex: 1,
     justifyContent: "space-between",
-    margin:40,
-  },  
+    margin: 40,
+  },
   texto: {
     alignItems: "center",
     fontWeight: "bold",
@@ -251,16 +373,16 @@ const styles = StyleSheet.create({
     position: "relative",
     marginTop: 5,
     color: "black",
-    marginBottom : 5,
+    marginBottom: 5,
   },
-  textoVar:{
-    textAlign:"left"
+  textoVar: {
+    textAlign: "left",
   },
-  iconos:{
+  iconos: {
     margin: 10,
     paddingLeft: 5,
   },
-  moduloTitle :{
+  moduloTitle: {
     alignItems: "center",
     fontWeight: "bold",
     fontSize: 20,
@@ -268,6 +390,6 @@ const styles = StyleSheet.create({
     position: "relative",
     marginTop: 5,
     color: "black",
-    marginBottom : 10,
-  }
+    marginBottom: 10,
+  },
 });

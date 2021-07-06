@@ -1,11 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import firebase from "firebase/app";
 
 function Subscription() {
   const [isSubscribed, setSubscription] = useState(false);
+
+  const UpdateSuB = (val) => {
+    firebase.database().ref("users/").set({
+      suscripcion: val,
+    });
+    console.log(val);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,6 +26,7 @@ function Subscription() {
             style={styles.button}
             onPress={() => {
               setSubscription(true);
+              UpdateSuB(true);
             }}
             color="dodgerblue"
             disabled={isSubscribed}
@@ -29,6 +38,7 @@ function Subscription() {
             style={styles.button}
             onPress={() => {
               setSubscription(false);
+              UpdateSuB(false);
             }}
             color="tomato"
             disabled={!isSubscribed}

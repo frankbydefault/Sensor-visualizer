@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     color: "#666",
-    backgroundColor: "lightsteelblue",
+    backgroundColor: "dodgerblue",
   },
 
   text: {

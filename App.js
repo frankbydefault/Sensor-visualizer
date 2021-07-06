@@ -18,7 +18,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { Login } from "./Screens/Login";
 import { Register } from "./Screens/Register";
-import { TabNav, HomeTabs } from "./TabNav";
+import { HomeTabs } from "./TabNav";
 
 function HomeScreen() {
   return <HomeTabs />;
