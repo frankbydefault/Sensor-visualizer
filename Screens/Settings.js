@@ -13,6 +13,7 @@ import Input from "../assets/Input";
 
 function SettingsPage() {
   return (
+    <View style={styles.back}>
     <ScrollView style={styles.container}>
       <View style={styles.objContainer} elevation={5}>
         <Text style={styles.text}>Márgenes de Temperatura</Text>
@@ -66,6 +67,7 @@ function SettingsPage() {
         </View>
       </View>
     </ScrollView>
+    </View>
   );
 }
 
@@ -103,5 +105,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginBottom: 20,
     padding: 15,
+  },
+  back: {
+    flex: 1,
+    backgroundColor: "#1e90ff",
   },
 });

@@ -348,10 +348,12 @@ export default function Display() {
       )}
 
       {modulos <= 3 && getSubState && (
-        <Button
-          title="Agregar Módulo"
-          onPress={() => setModulos(modulos + 1)}
-        />
+        <View style={styles.button}>
+          <Button
+            title="Agregar Módulo"
+            onPress={() => setModulos(modulos + 1)}
+          />
+        </View>
       )}
     </SafeAreaView>
   );
@@ -360,6 +362,13 @@ export default function Display() {
 export { Display };
 
 const styles = StyleSheet.create({
+  button: {
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: 20,
+    width: 250,
+    
+  },
   container: {
     flex: 1,
     justifyContent: "space-between",

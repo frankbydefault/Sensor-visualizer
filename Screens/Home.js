@@ -28,6 +28,7 @@ function Home({ navigation }) {
                 color: "dodgerblue",
                 fontSize: 17,
                 fontWeight: "bold",
+                padding: "2%" 
               }}
             >
               Cerrar Sesion
@@ -45,12 +46,12 @@ function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "gainsboro",
+    backgroundColor: "aliceblue",
   },
   logout: {
     alignItems: "flex-end",
-    padding: 20,
-    paddingTop: 38,
+    padding: 2,
+    paddingTop: 41,
   },
   Title: {
     alignItems: "center",
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
+    marginTop: "3%",
     resizeMode: "cover",
     justifyContent: "center",
   },
