@@ -117,13 +117,14 @@ export default function Display() {
     dataRetrieve();
   }, []);
 
-  const getSubState = async () => {
-    const snapshot = await database.ref("user").once("user");
-
-    subData = snapshot.val();
-
-    return subData;
-  };
+  function subscription() {
+    const sub = database()
+      .ref("users")
+      .on("suscripcion", (snapshot) => {
+        return snapshot.val();
+      });
+    return sub;
+  }
 
   return (
     <SafeAreaView>
@@ -302,7 +303,7 @@ export default function Display() {
         </Card>
       )}
 
-      {modulos >= 4 && (
+      {modulos >= 4 && subscription === true && (
         <Card style={styles.container}>
           <Card.Title style={styles.moduloTitle}>Módulo 5</Card.Title>
           <Card.Divider />
@@ -347,13 +348,13 @@ export default function Display() {
         </Card>
       )}
 
-      {modulos <= 3 && getSubState && (
-        <View style={styles.button}>
-          <Button
-            title="Agregar Módulo"
-            onPress={() => setModulos(modulos + 1)}
-          />
-        </View>
+      {modulos <= 3 && (
+        <Button
+          title="Agregar Módulo"
+          onPress={() => {
+            setModulos(modulos + 1);
+          }}
+        />
       )}
     </SafeAreaView>
   );
@@ -362,13 +363,6 @@ export default function Display() {
 export { Display };
 
 const styles = StyleSheet.create({
-  button: {
-    alignSelf: "center",
-    justifyContent: "center",
-    padding: 20,
-    width: 250,
-    
-  },
   container: {
     flex: 1,
     justifyContent: "space-between",
