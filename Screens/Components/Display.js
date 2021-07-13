@@ -6,6 +6,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon2 from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { sub } from "react-native-reanimated";
+
 export default function Display() {
   const [gas, setGas] = useState("");
   const [humedad, setHumedad] = useState("");
@@ -118,12 +119,15 @@ export default function Display() {
   }, []);
 
   function subscription() {
-    const sub = database()
-      .ref("users")
-      .on("suscripcion", (snapshot) => {
-        return snapshot.val();
-      });
-    return sub;
+    firebase.database().ref("users").on("value", getData);
+
+    function getData(data) {
+      var sub = data.val();
+      console.log(sub);
+      return sub;
+    }
+
+    return getData();
   }
 
   return (
@@ -303,7 +307,7 @@ export default function Display() {
         </Card>
       )}
 
-      {modulos >= 4 && subscription === true && (
+      {modulos >= 4 && subscription != false && (
         <Card style={styles.container}>
           <Card.Title style={styles.moduloTitle}>Módulo 5</Card.Title>
           <Card.Divider />
@@ -356,6 +360,7 @@ export default function Display() {
           }}
         />
       )}
+      <Button title="a" onPress={subscription} />
     </SafeAreaView>
   );
 }
