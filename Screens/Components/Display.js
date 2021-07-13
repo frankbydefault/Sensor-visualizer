@@ -5,7 +5,7 @@ import { Card, Text, ListItem, Button, Image } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon2 from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { sub } from "react-native-reanimated";
+import { set, sub } from "react-native-reanimated";
 
 export default function Display() {
   const [gas, setGas] = useState("");
@@ -30,6 +30,7 @@ export default function Display() {
   const [temperatura4, setTemperatura4] = useState("");
 
   const [modulos, setModulos] = useState(0);
+  const [sub,setSub] = useState(false);
 
   var firebaseConfig = {
     apiKey: "AIzaSyBxsKxSrf-jj2LNutVU-J2qO8Yev6c36Rs",
@@ -55,10 +56,7 @@ export default function Display() {
     });*/
   useEffect(() => {
     const dataRetrieve = () => {
-      firebase
-        .database()
-        .ref("Valores")
-        .on("value", (data) => {
+      firebase.database().ref("Valores").on("value", (data) => {
           const datos = data.toJSON();
 
           setGas(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Gas);
@@ -118,7 +116,18 @@ export default function Display() {
     dataRetrieve();
   }, []);
 
-  function subscription() {
+  useEffect(() => {
+    const subRetrieve = () => {
+      firebase.database().ref("users").on("value", (data) =>{
+        const sub_state = data.toJSON();
+        console.log(sub_state.suscripcion); 
+        setSub(sub_state.suscripcion);
+      });
+    };
+    subRetrieve();
+  },[]);
+
+  /*function subscription() {
     firebase.database().ref("users").on("value", getData);
 
     function getData(data) {
@@ -128,7 +137,7 @@ export default function Display() {
     }
 
     return getData();
-  }
+  }*/
 
   return (
     <SafeAreaView>
@@ -306,14 +315,13 @@ export default function Display() {
           </View>
         </Card>
       )}
-
-      {modulos >= 4 && subscription != false && (
+      {modulos >= 4 && (
         <Card style={styles.container}>
           <Card.Title style={styles.moduloTitle}>Módulo 5</Card.Title>
           <Card.Divider />
           <View style={styles.container}>
             <Text style={styles.texto}>
-              Gas: {gas3}{" "}
+              Gas: {gas4}{" "}
               <Icon
                 style={styles.iconos}
                 name="air-filter"
@@ -322,7 +330,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Humedad: {humedad3}{" "}
+              Humedad: {humedad4}{" "}
               <Icon2
                 style={styles.iconos}
                 name="md-water-sharp"
@@ -331,7 +339,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Temperatura: {temperatura3}{" "}
+              Temperatura: {temperatura4}{" "}
               <Icon
                 style={styles.iconos}
                 name="coolant-temperature"
@@ -340,7 +348,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Luz: {luz3}{" "}
+              Luz: {luz4}{" "}
               <Icon
                 style={styles.iconos}
                 name="ceiling-light"
@@ -352,7 +360,7 @@ export default function Display() {
         </Card>
       )}
 
-      {modulos <= 3 && (
+      {(modulos < 3 || sub) && (
         <Button
           title="Agregar Módulo"
           onPress={() => {
@@ -360,7 +368,6 @@ export default function Display() {
           }}
         />
       )}
-      <Button title="a" onPress={subscription} />
     </SafeAreaView>
   );
 }
