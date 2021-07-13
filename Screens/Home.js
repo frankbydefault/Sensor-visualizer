@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Charts} from "./Components/Charts";
 import {
   SafeAreaView,
   View,
@@ -6,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
+  ScrollView
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -19,7 +21,8 @@ function Home({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.back}>
+      <ScrollView>
       <View style={styles.barcontainer}>
         <View style={styles.logout}>
           <TouchableOpacity onPress={logoff}>
@@ -36,13 +39,12 @@ function Home({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-      <ImageBackground
-        source={require("../assets/img/Manager.png")}
-        style={styles.image}
-      ></ImageBackground>
+      <Charts/>
+      </ScrollView>     
     </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -70,6 +72,10 @@ const styles = StyleSheet.create({
     marginTop: "3%",
     resizeMode: "cover",
     justifyContent: "center",
+  },
+  back: {
+    flex: 1,
+    backgroundColor: "#0059b8",
   },
 });
 export { Home };

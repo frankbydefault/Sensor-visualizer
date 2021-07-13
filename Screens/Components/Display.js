@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, Button } from "react-native";
 import firebase from "firebase/app";
-import { Card, Text, ListItem, Button, Image } from "react-native-elements";
+import { Card, Text, ListItem, Image } from "react-native-elements";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon2 from "react-native-vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -59,57 +59,57 @@ export default function Display() {
       firebase.database().ref("Valores").on("value", (data) => {
           const datos = data.toJSON();
 
-          setGas(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Gas);
-          setHumedad(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Humedad);
-          setLuz(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Luz);
+          setGas(Math.trunc(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Gas));
+          setHumedad(Math.trunc(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Humedad));
+          setLuz(Math.trunc(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Luz));
           setTemperatura(
-            datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Temperatura
+            Math.trunc(datos.DatoUser1[datos.DatoUser1.Cantidad.Num - 1].Temperatura)
           );
 
           setGas2(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)].Gas
+           Math.trunc( datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)].Gas)
           );
           setHumedad2(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)]
-              .Humedad
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)]
+              .Humedad)
           );
           setLuz2(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)].Luz
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)].Luz)
           );
 
           setTemperatura2(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)]
-              .Temperatura
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 2)]
+              .Temperatura)
           );
 
           setGas3(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)].Gas
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)].Gas)
           );
           setHumedad3(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)]
-              .Humedad
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)]
+              .Humedad)
           );
           setLuz3(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)].Luz
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)].Luz)
           );
           setTemperatura3(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)]
-              .Temperatura
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 3)]
+              .Temperatura)
           );
 
           setGas4(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)].Gas
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)].Gas)
           );
           setHumedad4(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)]
-              .Humedad
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)]
+              .Humedad)
           );
           setLuz4(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)].Luz
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)].Luz)
           );
           setTemperatura4(
-            datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)]
-              .Temperatura
+            Math.trunc(datos.DatoUser1[Math.trunc(datos.DatoUser1.Cantidad.Num / 4)]
+              .Temperatura)
           );
         });
     };
@@ -146,7 +146,7 @@ export default function Display() {
         <Card.Divider />
         <View style={styles.container}>
           <Text style={styles.texto}>
-            Gas: {gas}{" "}
+            Gas: {gas}{" ppm"}
             <Icon
               style={styles.iconos}
               name="air-filter"
@@ -155,7 +155,7 @@ export default function Display() {
             />
           </Text>
           <Text style={styles.texto}>
-            Humedad: {humedad}{" "}
+            Humedad: {humedad}{" % "}
             <Icon2
               style={styles.iconos}
               name="md-water-sharp"
@@ -164,7 +164,7 @@ export default function Display() {
             />
           </Text>
           <Text style={styles.texto}>
-            Temperatura: {temperatura}{" "}
+            Temperatura: {temperatura}{" °C"}
             <Icon
               style={styles.iconos}
               name="coolant-temperature"
@@ -173,7 +173,7 @@ export default function Display() {
             />
           </Text>
           <Text style={styles.texto}>
-            Luz: {luz}{" "}
+            Luz: {luz}{" Luxes"}
             <Icon
               style={styles.iconos}
               name="ceiling-light"
@@ -189,7 +189,7 @@ export default function Display() {
           <Card.Divider />
           <View style={styles.container}>
             <Text style={styles.texto}>
-              Gas: {gas2}{" "}
+              Gas: {gas2}{" ppm"}
               <Icon
                 style={styles.iconos}
                 name="air-filter"
@@ -198,7 +198,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Humedad: {humedad2}{" "}
+              Humedad: {humedad2}{" % "}
               <Icon2
                 style={styles.iconos}
                 name="md-water-sharp"
@@ -207,7 +207,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Temperatura: {temperatura2}{" "}
+              Temperatura: {temperatura2}{" °C"}
               <Icon
                 style={styles.iconos}
                 name="coolant-temperature"
@@ -216,7 +216,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Luz: {luz2}{" "}
+              Luz: {luz2}{" Luxes"}
               <Icon
                 style={styles.iconos}
                 name="ceiling-light"
@@ -233,7 +233,7 @@ export default function Display() {
           <Card.Divider />
           <View style={styles.container}>
             <Text style={styles.texto}>
-              Gas: {gas3}{" "}
+              Gas: {gas3}{" ppm"}
               <Icon
                 style={styles.iconos}
                 name="air-filter"
@@ -242,7 +242,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Humedad: {humedad3}{" "}
+              Humedad: {humedad3}{" % "}
               <Icon2
                 style={styles.iconos}
                 name="md-water-sharp"
@@ -251,7 +251,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Temperatura: {temperatura3}{" "}
+              Temperatura: {temperatura3}{" °C"}
               <Icon
                 style={styles.iconos}
                 name="coolant-temperature"
@@ -260,7 +260,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Luz: {luz3}{" "}
+              Luz: {luz3}{" Luxes"}
               <Icon
                 style={styles.iconos}
                 name="ceiling-light"
@@ -277,7 +277,7 @@ export default function Display() {
           <Card.Divider />
           <View style={styles.container}>
             <Text style={styles.texto}>
-              Gas: {gas4}{" "}
+              Gas: {gas4}{" ppm"}
               <Icon
                 style={styles.iconos}
                 name="air-filter"
@@ -286,7 +286,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Humedad: {humedad4}{" "}
+              Humedad: {humedad4}{" % "}
               <Icon2
                 style={styles.iconos}
                 name="md-water-sharp"
@@ -295,7 +295,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Temperatura: {temperatura4}{" "}
+              Temperatura: {temperatura4}{" °C"}
               <Icon
                 style={styles.iconos}
                 name="coolant-temperature"
@@ -304,7 +304,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Luz: {luz4}{" "}
+              Luz: {luz4}{" Luxes"}
               <Icon
                 style={styles.iconos}
                 name="ceiling-light"
@@ -321,7 +321,7 @@ export default function Display() {
           <Card.Divider />
           <View style={styles.container}>
             <Text style={styles.texto}>
-              Gas: {gas4}{" "}
+              Gas: {gas4}{" ppm"}
               <Icon
                 style={styles.iconos}
                 name="air-filter"
@@ -330,7 +330,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Humedad: {humedad4}{" "}
+              Humedad: {humedad4}{" % "}
               <Icon2
                 style={styles.iconos}
                 name="md-water-sharp"
@@ -339,7 +339,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Temperatura: {temperatura4}{" "}
+              Temperatura: {temperatura4}{" °C"}
               <Icon
                 style={styles.iconos}
                 name="coolant-temperature"
@@ -348,7 +348,7 @@ export default function Display() {
               />
             </Text>
             <Text style={styles.texto}>
-              Luz: {luz4}{" "}
+              Luz: {luz4}{" Luxes"}
               <Icon
                 style={styles.iconos}
                 name="ceiling-light"
@@ -363,9 +363,11 @@ export default function Display() {
       {(modulos < 3 || sub) && (
         <Button
           title="Agregar Módulo"
+          color="#18b99e"
           onPress={() => {
             setModulos(modulos + 1);
           }}
+          
         />
       )}
     </SafeAreaView>
